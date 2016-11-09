@@ -33,7 +33,7 @@ export function serveDocs() {
     Config.APP_BASE,
     express.static(resolve(process.cwd(), Config.DOCS_DEST))
   );
-
+//  server.listen(Config.DOCS_PORT, 'http://'
   server.listen(Config.DOCS_PORT, () =>
     openResource('http://localhost:' + Config.DOCS_PORT + Config.APP_BASE)
   );
@@ -65,12 +65,19 @@ export function serveProd() {
   let server = express();
   let compression = require('compression');
       server.use(compression());
+//  console.log("config.appbase: " + Config.APP_BASE);
+//  console.log("Root: " + root);
+//  console.log("Server: " + server);
+//  console.log("CWD: " + process.cwd());
+// console.log("Port: " + Object.keys(process));
+//  console.log("IP: " + process.env.PORT);
 
   server.use(Config.APP_BASE, express.static(root));
 
   server.use(fallback('index.html', { root }));
-
-  server.listen(Config.PORT, () =>
-    openResource('http://localhost:' + Config.PORT + Config.APP_BASE)
+//  server.listen(Config.PORT, 'http://custom-env.nbgvpa7dwx.us-west-2.elasticbeanstalk.com');
+  server.listen(Config.PORT, () => {
+    console.log('http://localhost:  ' + Config.PORT + Config.APP_BASE);
+    }
   );
 };

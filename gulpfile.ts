@@ -1,6 +1,7 @@
 import * as gulp from 'gulp';
 import * as util from 'gulp-util';
 import * as runSequence from 'run-sequence';
+//import * as zip from 'gulp-zip';
 
 import Config from './tools/config';
 import { loadTasks } from './tools/utils';
@@ -131,7 +132,7 @@ gulp.task('serve.e2e', (done: any) =>
 // --------------
 // Serve prod
 gulp.task('serve.prod', (done: any) =>
-  runSequence('build.prod',
+  runSequence(//'build.prod',
               'server.prod',
               done));
 
@@ -142,6 +143,27 @@ gulp.task('test', (done: any) =>
   runSequence('build.test',
               'karma.run',
               done));
+
+
+// --------------
+// Package zip
+//gulp.task('package', (done: any) => {
+//  return gulp.src([
+//  // what to includes
+//  '.ebextensions/**/*',
+//  '.*',
+//  '*.*',
+//  'dist/**/*',
+//  'tools/**/*',
+//  'src/**/*',
+//  // what to exclude
+//  '!.idea', 
+//  '!.elasticbeanstalk'
+//], {base: 'C:\Users\Garrett\EclipseWorkSpace\SB-Admin-BS4-Angular-2'})
+//  .pipe(zip("myApp.zip"))
+//  .pipe(gulp.dest('C:\Users\Garrett\EclipseWorkSpace\SB-Admin-BS4-Angular-2'));
+//});
+
 
 // --------------
 // Clean dev/coverage that will only run once
